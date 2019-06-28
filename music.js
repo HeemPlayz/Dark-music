@@ -45,6 +45,40 @@ var download = function(uri, filename, callback) {
     });
 };
 
+
+client.on("message", message => {	
+
+  
+	if (message.content.startsWith('-music')) { 	
+message.channel.send(`
+**:headphones: | Music Commands**
+~~----------------------------------~~
+**
+To Play a Song \`\-play\`
+-
+To Stop a Song \`\-stop\`
+-
+To Skip a Song \`\-skip\`
+-
+To Change the music volume \`\-vol\`
+-
+To Stop a song temporary \`\-pause\`
+-
+To Resume a pasued song \`\-resume\`
+-
+To Join the voice room \`\-join \`
+
+The Bot Made By : <@536009907120504847> , <@523836549390139392>
+**
+~~----------------------------------~~
+		`).then(msg => {
+			msg.react('🎧')
+})  
+	}});
+
+
+
+
 client.on('message', function(message) {
     const member = message.member;
     const mess = message.content.toLowerCase();
