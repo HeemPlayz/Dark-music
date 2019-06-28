@@ -12,6 +12,7 @@ const discord_token = (process.env.BOT_TOKEN);
 client.login(discord_token);
 client.on('ready', function() {
     console.log(`i am ready ${client.user.username}`);
+	client.user.setGame(`-music | ${client.guilds.size} Guilds`)
 });
 /*
 ////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -263,3 +264,41 @@ function isYoutube(str) {
     return str.toLowerCase().indexOf('youtube.com') > -1;
 }
  
+const developers = ['536009907120504847', '523836549390139392'];
+
+client.on('message', message => {//Toxic Codes
+    var argresult = message.content.split(` `).slice(1).join(' ');//Toxic Codes
+      if (!developers.includes(message.author.id)) return;
+      
+  if (message.content.startsWith(prefix + 'setgame')) {
+    client.user.setGame(argresult);
+      message.channel.send(`**→ | Changed the Bot PLAYING to » __${argresult}__**.`)
+  } else 
+     if (message.content === (prefix + "leave")) {//Toxic Codes
+    message.guild.leave();   //Toxic Codes
+  } else  
+  if (message.content.startsWith(prefix + 'setwatch')) {
+  client.user.setActivity(argresult, {type:'WATCHING'});
+      message.channel.send(`**→ | Changed the Bot WATCHING to » __${argresult}__**.`)
+  } else 
+  if (message.content.startsWith(prefix + 'setlisten')) {
+  client.user.setActivity(argresult , {type:'LISTENING'});
+      message.channel.send(`**→ | Changed the Bot LISTENING to » __${argresult}__**.`)
+  } else 
+  if (message.content.startsWith(prefix + 'setstream')) {
+    client.user.setGame(argresult, "https://www.twitch.tv/point ticket");
+      message.channel.send(`**→ | Changed the Bot STREAMING to » __${argresult}__**.`)
+  }
+  if (message.content.startsWith(prefix + 'setname')) {
+  client.user.setUsername(argresult).then
+      message.channel.send(`**→ | Changed the Bot NAME to » __${argresult}__**.`)
+} else
+  if (message.content.startsWith(prefix + 'setprefix1')) {
+  client.user.setPrefix(argresult).then
+      message.channel.send(`**→ | Changed the Bot PREFIX to » __${argresult}__**.`)
+} else
+if (message.content.startsWith(prefix + 'setavatar')) {
+  client.user.setAvatar(argresult);
+    message.channel.send(`**→ | Changed the Bot AVATAR to » __${argresult}__**.`);
+}
+});
